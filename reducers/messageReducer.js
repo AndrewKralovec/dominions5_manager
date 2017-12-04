@@ -5,9 +5,9 @@ const gamesActions = require('../actions/gameActions');
 function messageReducer(message){
     switch (message.content) {
         case types.PING:
-            gamesActions.get_ping();
+            gamesActions.getPing();
         case types.CREATE:
-            gamesActions.new_game()
+            gamesActions.newGame()
             .then(data => {
                 message.reply(data)
             })
@@ -15,7 +15,7 @@ function messageReducer(message){
                 throw error; 
             });
         case types.VERSION:
-            gamesActions.get_version()
+            gamesActions.getVersion()
             .then(data => {
                 message.reply(data)
             })
