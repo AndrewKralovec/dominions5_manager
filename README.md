@@ -1,5 +1,5 @@
 # dominions5_manager
-Dominions5 Discord Bot for managing and automating Dominions5 Games
+Dominions5 Discord Bot for managing and automating Dominions5 Games. Currenlty the dominions5_manager application starts a discord bot to monitor your games being hosted on http://www.llamaserver.net. The creation and mangment of game servers is still being developed. 
 
 ## App Setup
 Dominions5 Discord Bot for managing and automating Dominions5 Games
