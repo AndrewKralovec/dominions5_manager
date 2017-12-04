@@ -26,6 +26,7 @@ function format(text){
         }
     }
 }
+// Remove upon app completion 
 module.exports = (data) => {
     const $ = cheerio.load(data);
     var tbody = format($('tbody').text());     
@@ -33,7 +34,9 @@ module.exports = (data) => {
     if(!isReady(text)) {
         const game = $('b').text();
         const turn = getTurn($('font').contents()); 
-        return `\n--------------------\nTesting Interval\n${game}\n${turn.toString()}`; 
+        return `Testing Interval
+                ${game}
+                ${turn.toString()}`; 
     }else{
         return false;
     }

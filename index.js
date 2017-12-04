@@ -7,8 +7,8 @@ const connect = require('./actions/connectionActions');
 const client = new Discord.Client();
 
 function getGameStatus(channel){
-    settings.games.forEach((game) => {
-        fetch(`${settings.url}${game}`)
+    settings.GAMES.forEach((game) => {
+        fetch(`${settings.URL}${game}`)
         .then(data => data.text())
         .then(data => {
             const message = statusReducer(data); 
@@ -21,7 +21,7 @@ function getGameStatus(channel){
     })
 }
 client.on('ready', () => {
-    client.user.setUsername(settings.manager_name)
+    client.user.setUsername(settings.MANAGER_NAME)
     .then(data => { 
         console.log(`Logged in as ${data.client.user.tag}!`);
         return connect(data.client)
@@ -29,7 +29,7 @@ client.on('ready', () => {
     .then(channel => {
         setInterval(() => {
             getGameStatus(channel); 
-        }, settings.interval);
+        }, settings.INTERVAL);
     }).catch(error => {
         console.log(error); 
         process.exit();    
@@ -38,6 +38,6 @@ client.on('ready', () => {
 client.on('message', (message) => {
     messageReducer(message); 
 });
-client.login(settings.token);
+client.login(settings.TOKEN);
 
         
