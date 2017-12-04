@@ -60,7 +60,6 @@ client.on('message', (message) => {
 ```
 **For Now** direct messages are used only for turn files. When the gets the turn file from a user it will add the turn file to the store until all players are ready for the turn to be processed. Messages in the channel will be ignored, unless they start with the `$` special characters. If a message in the channel starts with the `$` special characters, the bot will interpret this as a command and will try to process the command you are trying to specify. **For Now** the message commands are set in the `actionTypes.js` file. 
 ```
-const messageReducer = require('./reducers/messageReducer');
 ...
 module.exports.VERSION = '$version';
 module.exports.CREATE = '$create_game';
