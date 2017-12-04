@@ -41,7 +41,24 @@ appsettings.json
 
 #### index.js
 
-This is the entry point of the app. `Index.js` loads the application settings, reducer and action functions. First index try's to connect to your server channel.  If index is able to connect, it does executes to main functions (**For Now**). The fist function is an interval function. This function checks the game status located on the llamaserver. The interval function gets the list of games from the games key set in the `appsettings.json` file, as well as the amount of time to wait from the interval key value. The second function is the `messageReducer` function. This function is used to determine the messages sent to the bot. **For Now** direct messages are used only for turn files. When the gets the turn file from a user it will add the turn file to the store until all players are ready for the turn to be processed. Messages in the channel will be ignored, unless they start with the `$` special characters. If a message in the channel starts with the `$` special characters, the bot will interpret this as a command and will try to process the command you are trying to specify 
+This is the entry point of the app. `Index.js` loads the application settings, reducer and action functions. First index try's to connect to your server channel.  If index is able to connect, it does executes to main functions (**For Now**). The fist function is an interval function. This function checks the game status located on the llamaserver. The interval function gets the list of games from the games key set in the `appsettings.json` file, as well as the amount of time to wait from the interval key value. 
+```
+... 
+.then(channel => {
+    setInterval(() => {
+        getGameStatus(channel); 
+    }, settings.INTERVAL);
+})
+```
+The second function is the `messageReducer` function. This function is used to determine the messages sent to the bot.
+```
+const messageReducer = require('./reducers/messageReducer');
+...
+client.on('message', (message) => {
+    messageReducer(message); 
+});
+```
+**For Now** direct messages are used only for turn files. When the gets the turn file from a user it will add the turn file to the store until all players are ready for the turn to be processed. Messages in the channel will be ignored, unless they start with the `$` special characters. If a message in the channel starts with the `$` special characters, the bot will interpret this as a command and will try to process the command you are trying to specify 
 
 #### Reducers 
 To be filled out later 
