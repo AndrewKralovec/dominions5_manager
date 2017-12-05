@@ -2,9 +2,7 @@
 Dominions5 Discord Bot for managing and automating Dominions5 Games. Currenlty the dominions5_manager application starts a discord bot to monitor your games being hosted on http://www.llamaserver.net. The creation and mangment of game servers is still being developed. 
 
 ## App Setup
-Dominions5 Discord Bot for managing and automating Dominions5 Games
-
-
+You must have node version v7.6.0 or higher. The await & async functions have been added to help clean up promise purgatory. 
  * git clone https://github.com/AndrewKralovec/dominions5_manager
  * change appsettings.json to fit your app Dominions 5 and Discord Bot settings
  * npm install
@@ -19,7 +17,7 @@ This is where Dominions 5 and Discord Bot settings held. You can add any setting
 appsettings.json
 ```
 {
-    "CLIENT_ID": "",
+    "CHANNEL": "",
     "GAME_FOLDER": "D:\\Games\\Dominions5\\Dominions5",
     "GAMES":[
     ], 
@@ -30,7 +28,7 @@ appsettings.json
     "URL":"http://www.llamaserver.net/gameinfo.cgi?game="
 }
 ```
- * client_id key is the Discord Bot ID. This is **required** for this manager to work. 
+ * channel_id key is the Discord Bot ID. This is **required** for this manager to work. 
  * game_folder key is the location of your Dominions5 executable file. 
  * games key is an array of games that the manager will check on an interval to determine game status. This is **required** for this manager to work. 
  * interval key is the amount of time the manager will wait until it checks the game status. The value is meant to be in milliseconds, but this can be configured any way you wish. This is **required** for this manager to work. 
@@ -81,7 +79,3 @@ To be filled out later
 ## Dominions 5 command line options
 
 This [document](http://www.illwinter.com/dom5/techmanual.html#network-options) contains information on the command line options available for Dominions 5 as well as commands to control a network server without using the GUI. If you just want to play Dominions 5, you do not need to read this document.
-
-
-
-
