@@ -31,12 +31,10 @@ module.exports = (data) => {
     const $ = cheerio.load(data);
     var tbody = format($('tbody').text());     
     var text = tbody.data; 
-    if(!isReady(text)) {
+    if(isReady(text)) {
         const game = $('b').text();
         const turn = getTurn($('font').contents()); 
-        return `Testing Interval
-                ${game}
-                ${turn.toString()}`; 
+        return `Testing Interval\n${game}\n${turn.toString()}`; 
     }else{
         return false;
     }

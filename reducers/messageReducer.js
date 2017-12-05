@@ -2,27 +2,22 @@ const types = require('../actions/actionTypes');
 const gamesActions = require('../actions/gameActions');
 // PM  message.author.send(message.content)
 // message.channel.type
-function messageReducer(message){
+async function messageReducer(message, action = null){
     switch (message.content) {
         case types.PING:
-            gamesActions.getPing();
+            action = await gamesActions.getPing();
+            break;
         case types.CREATE:
-            gamesActions.newGame()
-            .then(data => {
-                message.reply(data)
-            })
-            .catch(error =>  {
-                throw error; 
-            });
+            action = await gamesActions.newGame()
+            break;
         case types.VERSION:
-            gamesActions.getVersion()
-            .then(data => {
-                message.reply(data)
-            })
-            .catch(error =>  {
-                throw error; 
-            });
+            action = await gamesActions.getVersion()
+            break;
+        default :
+            return;
+            break; 
       }
+      message.author.send(action) 
 }
 function dominionsReducer(message){
     const game_name = message.content;
@@ -37,8 +32,10 @@ module.exports = (message, action = null) => {
     switch (message.channel.type) {
         case types.DM:
             dominionsReducer(message); 
+            break;
         case types.TEXT:
             messageReducer(message); 
+            break; 
       }
 }
 
