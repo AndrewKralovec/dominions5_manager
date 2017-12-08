@@ -1,0 +1,5 @@
+.vscode/launch.json
+.vscode/secret.json
+db
+db/master.db
+db/easy.db

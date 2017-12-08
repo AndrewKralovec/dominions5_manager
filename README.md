@@ -17,7 +17,7 @@ This is where Dominions 5 and Discord Bot settings held. You can add any setting
 appsettings.json
 ```
 {
-    "CHANNEL": "",
+    "CHANNEL_ID": "",
     "GAME_FOLDER": "D:\\Games\\Dominions5\\Dominions5",
     "GAMES":[
     ], 
