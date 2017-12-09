@@ -5,28 +5,24 @@ const messageReducer = require('./reducers/messageReducer');
 const statusReducer = require('./reducers/statusReducer');
 const connect = require('./actions/connectionActions');
 const client = new Discord.Client();
-
 function getGameStatus(channel){
-    settings.GAMES.forEach(async (game) => {
-        fetch(`${settings.URL}${game}`)
-        .then(data => data.text())
-        .then(data => {
-            const message = statusReducer(data); 
-            if(message){
-                channel.send(message)
-            }
-        }).catch(error => {
-            throw (error);
+    return () => {
+        settings.GAMES.forEach(async (game) => {
+            fetch(`${settings.URL}${game}`)
+            .then(data => data.text())
+            .then(data => {
+                statusReducer(data, channel); 
+            }).catch(error => {
+                throw (error);
+            });
         });
-    })
+    };
 }
 client.on('ready', async () => {
     // await client.user.setUsername(settings.MANAGER_NAME)
     console.log(`Logged in as ${client.user.tag}!`);    
     const channel = await connect(client); 
-    setInterval(() => {
-        getGameStatus(channel); 
-    }, settings.INTERVAL);
+    setInterval(getGameStatus(channel), settings.INTERVAL);
 });
 client.on('message', (message) => {
     messageReducer(message); 

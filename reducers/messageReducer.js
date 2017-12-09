@@ -15,11 +15,11 @@ async function messageReducer(message, action = null){
             break;
         default :
             return;
-            break; 
       }
       message.author.send(action) 
 }
 function dominionsReducer(message){
+    // Sudo, unfinished function
     const game_name = message.content;
     const author = message.author.username;
     message.attachments.forEach((attachment) => {

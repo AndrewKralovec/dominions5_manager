@@ -1,5 +1,5 @@
 # dominions5_manager
-Dominions5 Discord Bot for managing and automating Dominions5 Games. Currenlty the dominions5_manager application starts a discord bot to monitor your games being hosted on http://www.llamaserver.net. The creation and mangment of game servers is still being developed. 
+Dominions5 Discord Bot for managing and automating Dominions5 Games. Currenlty the dominions5_manager application starts a discord bot to monitor your games being hosted on http://www.llamaserver.net. The creation and mangment of game servers is still being developed.
 
 ## App Setup
 You must have node version v7.6.0 or higher. The await & async functions have been added to help clean up promise purgatory. 
@@ -8,11 +8,14 @@ You must have node version v7.6.0 or higher. The await & async functions have be
  * npm install
  * node index.js 
 
+## Notes
+The application is all the files as a whole that you download. The manger is `Index.js`, its the entry point of the application. The Bot is the discord client. 
+
 ## API
 
 #### appsettings.json
 
-This is where Dominions 5 and Discord Bot settings held. You can add any settings you want your BOT to use. 
+This is where Dominions 5 and Discord Bot settings held. You can add any settings you want your Bot to use. 
 
 appsettings.json
 ```
@@ -56,7 +59,7 @@ client.on('message', (message) => {
     messageReducer(message); 
 });
 ```
-**For Now** direct messages are used only for turn files. When the gets the turn file from a user it will add the turn file to the store until all players are ready for the turn to be processed. Messages in the channel will be ignored, unless they start with the `$` special characters. If a message in the channel starts with the `$` special characters, the bot will interpret this as a command and will try to process the command you are trying to specify. **For Now** the message commands are set in the `actionTypes.js` file. 
+**For Now** direct messages are used only for turn files. When the Bot gets the users turn file(2h file), it will add the turn file to the bin directory until all players are ready for the game to be processed. Messages in the channel will be ignored, unless they start with the `$` special characters. If a message in the channel starts with the `$` special characters, the Bot will interpret this as a command and will try to process the command you are trying to specify. **For Now** the message commands are set in the `actionTypes.js` file. You can edit/add any custom commands in this folder. 
 ```
 ...
 module.exports.VERSION = '$version';
@@ -66,10 +69,21 @@ module.exports.GAME_STATUS = '$game_status';
 module.exports.GENERATE_MAP = '$generate_map';
 ```
 
-#### Reducers 
-To be filled out later 
+### App Directory  
+You'll notice two naming conventions, reducers & actions. These are **not** meant to be confused with reducers & actions found in React Redux. 
+
 #### Actions 
-To be filled out later 
+Folder for actions functions. Actions are,... are meant to generate actions. All of the game processing logic will be found in these files. The Manager does this by executing Dominions5.exe file as a new process. Since a shell is not spawned, behaviors such as I/O redirection and file globbing are not supported.
+
+#### Bin 
+**For now** is basically a misc Folder.
+
+#### DB 
+Folder for sqlite (though any can be set here), database files. **For now** You shouldnt have to worry about loosing game data. The manager doesn't keep track of games or players, it interprets input and executes actions. 
+
+#### Reducers 
+Folder for Reducer functions. Reducers are to interpret input and determine what the corresponding action should be. I came up with the name because they reduce the line numbers in index.js (originally everything was set in index.js). 
+
 
 ## Packages 
  * cheerio, for parsing the web service web pages. 
