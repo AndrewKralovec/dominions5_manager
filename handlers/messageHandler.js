@@ -1,8 +1,12 @@
+const fectch = require('isomorphic-fetch');
 const types = require('../actions/actionTypes');
 const gamesActions = require('../actions/gameActions');
+const hostActions = require('../actions/hostActions');
+
+
 // PM  message.author.send(message.content)
 // message.channel.type
-async function messageReducer(message, action = null){
+async function messageHandler(message, action = null){
     switch (message.content) {
         case types.PING:
             action = await gamesActions.getPing();
@@ -18,23 +22,30 @@ async function messageReducer(message, action = null){
       }
       message.author.send(action) 
 }
-function dominionsReducer(message){
+function dominionsHandler(message){
     // Sudo, unfinished function
     const game_name = message.content;
     const author = message.author.username;
     message.attachments.forEach((attachment) => {
-        attachment.value.url; 
-        attachment.value.filename; 
+        fetch(attachment.url)
+        .then(data => data.text())            
+        .then(data => {
+            return hostActions.writeFile(game_name, data)
+        }).then(data => {
+            console.log(data); 
+        }) 
+        .catch(error => {
+            throw (error);
+        });
     });
-    // Upload information to Server &or game folder 
 }
 module.exports = (message, action = null) => {
     switch (message.channel.type) {
         case types.DM:
-            dominionsReducer(message); 
+            dominionsHandler(message); 
             break;
         case types.TEXT:
-            messageReducer(message); 
+            messageHandler(message); 
             break; 
       }
 }

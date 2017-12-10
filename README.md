@@ -42,7 +42,7 @@ appsettings.json
 
 #### index.js
 
-This is the entry point of the app. `Index.js` loads the application settings, reducer and action functions. First index try's to connect to your server channel.  If index is able to connect, it does executes to main functions (**For Now**). The fist function is an interval function. This function checks the game status located on the llamaserver. The interval function gets the list of games from the games key set in the `appsettings.json` file, as well as the amount of time to wait from the interval key value. 
+This is the entry point of the app. `Index.js` loads the application settings, handler and action functions. First index try's to connect to your server channel.  If index is able to connect, it does executes to main functions (**For Now**). The fist function is an interval function. This function checks the game status located on the llamaserver. The interval function gets the list of games from the games key set in the `appsettings.json` file, as well as the amount of time to wait from the interval key value. 
 ```
 ... 
 .then(channel => {
@@ -51,12 +51,12 @@ This is the entry point of the app. `Index.js` loads the application settings, r
     }, settings.INTERVAL);
 })
 ```
-The second function is the `messageReducer` function. This function is used to determine the messages sent to the bot.
+The second function is the `messageHandler` function. This function is used to determine the messages sent to the bot.
 ```
-const messageReducer = require('./reducers/messageReducer');
+const messageHandler = require('./handlers/messageHandler');
 ...
 client.on('message', (message) => {
-    messageReducer(message); 
+    messageHandler(message); 
 });
 ```
 **For Now** direct messages are used only for turn files. When the Bot gets the users turn file(2h file), it will add the turn file to the bin directory until all players are ready for the game to be processed. Messages in the channel will be ignored, unless they start with the `$` special characters. If a message in the channel starts with the `$` special characters, the Bot will interpret this as a command and will try to process the command you are trying to specify. **For Now** the message commands are set in the `actionTypes.js` file. You can edit/add any custom commands in this folder. 
@@ -70,7 +70,6 @@ module.exports.GENERATE_MAP = '$generate_map';
 ```
 
 ### App Directory  
-You'll notice two naming conventions, reducers & actions. These are **not** meant to be confused with reducers & actions found in React Redux. 
 
 #### Actions 
 Folder for actions functions. Actions are,... are meant to generate actions. All of the game processing logic will be found in these files. The Manager does this by executing Dominions5.exe file as a new process. Since a shell is not spawned, behaviors such as I/O redirection and file globbing are not supported.
@@ -81,8 +80,8 @@ Folder for actions functions. Actions are,... are meant to generate actions. All
 #### DB 
 Folder for sqlite (though any can be set here), database files. **For now** You shouldnt have to worry about loosing game data. The manager doesn't keep track of games or players, it interprets input and executes actions. 
 
-#### Reducers 
-Folder for Reducer functions. Reducers are to interpret input and determine what the corresponding action should be. I came up with the name because they reduce the line numbers in index.js (originally everything was set in index.js). 
+#### Handlers 
+Folder for Handler functions. Handlers are to interpret input and determine what the corresponding action should be.
 
 
 ## Packages 
