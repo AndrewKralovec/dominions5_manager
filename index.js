@@ -8,7 +8,7 @@ client.on('ready', async () => {
     // await client.user.setUsername(settings.MANAGER_NAME)
     console.log(`Logged in as ${client.user.tag}!`);
     const channel = await connect(client);
-    // When manager is ready, start the webHandler 
+    // When manager is ready, start the webHandler
     webHandler(channel, settings); 
 });
 client.on('message', (message) => {

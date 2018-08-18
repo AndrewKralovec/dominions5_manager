@@ -1,5 +1,5 @@
 const fs = require('fs')
-const path = require('path')
+// const path = require('path')
 module.exports.mkDir = function(path){
     return new Promise((resolve, reject) => {
         try {
@@ -14,7 +14,7 @@ module.exports.mkDir = function(path){
 module.exports.submitTurn = function(name){
     return new Promise((resolve, reject) => {
         try {
-            fs.mkdir(path,() => {
+            fs.mkdir(name,() => {
                 resolve();            
             }) 
         } catch (error) {
@@ -29,10 +29,13 @@ module.exports.writeFile = function(name, content){
                 if (err) {
                     throw err; 
                 }
-                resolve("The file was saved!");
+                resolve(true);
             });
         } catch (error) {
             reject(error);
         }
     });
+}; 
+module.exports.exists = function(path){
+    return (fs.existsSync(path)); 
 }; 

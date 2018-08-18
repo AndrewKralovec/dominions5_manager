@@ -2,6 +2,7 @@ const cheerio = require('cheerio');
 // const fectch = require('isomorphic-fetch');
 
 function isReady(players){
+    let i;
     for (i = 0; i < players.length; i++) {
         if(players[i].includes('Waiting')) {
             return false; 
@@ -10,6 +11,7 @@ function isReady(players){
     return true; 
 }
 function getTurn(content){
+    let i;
     for (i = 0; i < content.length; i++) {
         if(content[i].type == 'text') {
             if(content[i].data.includes('Turn')) {

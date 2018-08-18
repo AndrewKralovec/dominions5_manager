@@ -1,7 +1,10 @@
 const fectch = require('isomorphic-fetch');
 const { parseText } = require("../actions/webActions");
 module.exports =  function(channel, settings){
-    setInterval(() =>{
+    if(!settings.WEBSCAN) {
+        return ;
+    }
+    setInterval(() => {
         settings.GAMES.forEach(async (game) => {
             fetch(`${settings.URL}${game}`)
             .then(data => data.text())

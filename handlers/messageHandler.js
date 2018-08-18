@@ -1,9 +1,7 @@
 const fectch = require('isomorphic-fetch');
 const types = require('../actions/actionTypes');
 const gamesActions = require('../actions/gameActions');
-const hostActions = require('../actions/hostActions');
-
-
+const { writeFile, exists } = require('../actions/hostActions');
 // PM  message.author.send(message.content)
 // message.channel.type
 async function messageHandler(message, action = null){
@@ -22,7 +20,7 @@ async function messageHandler(message, action = null){
       }
       message.author.send(action) 
 }
-function dominionsHandler(message){
+function dominionsHandler(message, action = null){
     // Sudo, unfinished function
     const game_name = message.content;
     const author = message.author.username;
@@ -30,11 +28,12 @@ function dominionsHandler(message){
         fetch(attachment.url)
         .then(data => data.text())            
         .then(data => {
-            return hostActions.writeFile(game_name, data)
+            if(exists(path)){
+                return writeFile(game_name, data)                
+            }
         }).then(data => {
-            console.log(data); 
-        }) 
-        .catch(error => {
+
+        }).catch(error => {
             throw (error);
         });
     });
