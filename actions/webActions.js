@@ -1,5 +1,5 @@
 const cheerio = require('cheerio');
-// const fectch = require('isomorphic-fetch');
+const fectch = require('isomorphic-fetch');
 
 function isReady(players){
     let i;
@@ -46,10 +46,14 @@ module.exports.parseText = function(data){
         }
     });
 }
-module.exports.fetchImage = function(data){
+module.exports.fetchFile = function(url){
     return new Promise((resolve, reject) => {
         try {
-             
+            fetch(url)
+            .then(data => data.text())            
+            .then(data => {
+                resolve(data);
+            })
         } catch (error) {
             reject(error);
         }

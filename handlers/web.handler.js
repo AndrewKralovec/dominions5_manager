@@ -1,6 +1,6 @@
 const fectch = require('isomorphic-fetch');
 const { parseText } = require("../actions/webActions");
-module.exports =  function(channel, settings){
+module.exports =  function(channel, settings) {
     if(!settings.WEBSCAN) {
         return ;
     }
