@@ -4,3 +4,4 @@ db
 db/master.db
 db/easy.db
 appsettings.json
+node_modules
