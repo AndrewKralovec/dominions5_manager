@@ -1,8 +1,10 @@
-const fectch = require('isomorphic-fetch');
-const { parseText } = require("../actions/webActions");
-module.exports =  function(channel, settings) {
+const fetch = require('isomorphic-fetch')
+const { parseText } = require("../actions/webActions")
+
+
+module.exports =  (channel, settings) => {
     if(!settings.WEBSCAN)
-        return;
+        return
 
     setInterval(() => {
         settings.GAMES.forEach(async (game) => {
@@ -11,11 +13,10 @@ module.exports =  function(channel, settings) {
             .then(data => parseText(data))
             .then(game => {
                 if(game.isReady)
-                    channel.send(game.status);
+                    channel.send(game.status)
             }).catch(error => {
-                throw (error);
-            });
-        });
-    }, settings.INTERVAL);
+                throw (error)
+            })
+        })
+    }, settings.INTERVAL)
 }
-

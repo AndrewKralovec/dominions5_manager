@@ -1,12 +1,11 @@
-{
+module.exports = {
     "env": {
         "es6": true,
         "node": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
-        "ecmaVersion": 2017,
-        "sourceType": "module"
+        "ecmaVersion": 2017
     },
     "rules": {
         "accessor-pairs": "error",
@@ -17,7 +16,7 @@
         ],
         "array-callback-return": "error",
         "array-element-newline": "off",
-        "arrow-body-style": "error",
+        "arrow-body-style": "off",
         "arrow-parens": "off",
         "arrow-spacing": [
             "error",
@@ -58,14 +57,14 @@
                 "allowKeywords": true
             }
         ],
-        "eol-last": "off",
+        "eol-last": "error",
         "eqeqeq": "off",
         "func-call-spacing": "error",
         "func-name-matching": "error",
-        "func-names": "off",
+        "func-names": "error",
         "func-style": [
             "error",
-            "declaration"
+            "expression"
         ],
         "function-paren-newline": "error",
         "generator-star-spacing": "error",
@@ -119,7 +118,6 @@
         "no-catch-shadow": "error",
         "no-confusing-arrow": "error",
         "no-continue": "error",
-        "no-console":"off",
         "no-div-regex": "error",
         "no-duplicate-imports": "error",
         "no-else-return": "error",
@@ -232,17 +230,19 @@
         "radix": "error",
         "require-atomic-updates": "error",
         "require-await": "off",
-        "require-jsdoc": "off",
+        "require-jsdoc": "error",
         "require-unicode-regexp": "off",
         "rest-spread-spacing": "error",
-        "semi": "warn",
+        "semi": "off",
         "semi-spacing": "error",
-        "semi-style": [
-            "error",
-            "last"
-        ],
+        "semi-style": "error",
         "sort-imports": "error",
-        "space-before-blocks": "off",
+        "sort-keys": [
+            "error",
+            "asc"
+        ],
+        "sort-vars": "error",
+        "space-before-blocks": "error",
         "space-before-function-paren": "off",
         "space-in-parens": [
             "error",
@@ -254,7 +254,10 @@
             "error",
             "always"
         ],
-        "strict": "error",
+        "strict": [
+            "error",
+            "never"
+        ],
         "switch-colon-spacing": "error",
         "symbol-description": "error",
         "template-curly-spacing": [
@@ -276,4 +279,4 @@
             "never"
         ]
     }
-}
+};

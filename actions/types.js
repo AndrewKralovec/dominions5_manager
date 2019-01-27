@@ -1,7 +1,17 @@
-module.exports.PING = 'ping';
-module.exports.VERSION = '$version';
-module.exports.DM = 'dm';
-module.exports.TEXT = 'text';
-module.exports.CREATE = '$create_game';
-module.exports.NEW_GAME = '$create_game';
-module.exports.DOMINIONS = 'Dominions5.exe';
+const CREATE = '$create_game'
+const DM = 'dm'
+const DOMINIONS = 'Dominions5.exe'
+const NEW_GAME = '$create_game'
+const PING = 'ping'
+const TEXT = 'text'
+const VERSION = '$version'
+
+module.exports = {
+    CREATE,
+    DM,
+    DOMINIONS,
+    NEW_GAME,
+    PING,
+    TEXT,
+    VERSION
+}

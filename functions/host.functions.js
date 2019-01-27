@@ -1,5 +1,5 @@
 const fs = require('fs')
-// const path = require('path')
+const fetch = require('isomorphic-fetch')
 
 module.exports.mkDir = (path) => {
     return new Promise((resolve, reject) => {
@@ -43,4 +43,18 @@ module.exports.writeFile = (name, content) => {
 module.exports.exists = (path) => {
     // eslint-disable-next-line no-sync
     return (fs.existsSync(path)) 
-} 
+}
+
+module.exports.fetchFile = (url) => {
+    return new Promise((resolve, reject) => {
+        try {
+            fetch(url)
+            .then(data => data.text())            
+            .then(data => {
+                resolve(data)
+            })
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
