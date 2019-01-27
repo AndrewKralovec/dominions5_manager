@@ -73,7 +73,7 @@
         "guard-for-in": "error",
         "handle-callback-err": "error",
         "id-blacklist": "error",
-        "id-length": "error",
+        "id-length": "off",
         "id-match": "error",
         "implicit-arrow-linebreak": [
             "error",
@@ -119,6 +119,7 @@
         "no-catch-shadow": "error",
         "no-confusing-arrow": "error",
         "no-continue": "error",
+        "no-console":"off",
         "no-div-regex": "error",
         "no-duplicate-imports": "error",
         "no-else-return": "error",
@@ -161,7 +162,7 @@
         "no-octal-escape": "error",
         "no-param-reassign": "error",
         "no-path-concat": "error",
-        "no-plusplus": "error",
+        "no-plusplus": "off",
         "no-process-env": "error",
         "no-process-exit": "error",
         "no-proto": "error",
@@ -234,18 +235,13 @@
         "require-jsdoc": "off",
         "require-unicode-regexp": "off",
         "rest-spread-spacing": "error",
-        "semi": "off",
+        "semi": "warn",
         "semi-spacing": "error",
         "semi-style": [
             "error",
             "last"
         ],
         "sort-imports": "error",
-        "sort-keys": [
-            "error",
-            "desc"
-        ],
-        "sort-vars": "error",
         "space-before-blocks": "off",
         "space-before-function-paren": "off",
         "space-in-parens": [
